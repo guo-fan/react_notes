@@ -1,0 +1,10 @@
+//取多个对象数组中的某个属性值形成新数组
+//name是要取得属性名，taskTypeArr和taskContentArr是对象数组
+
+var type = [];
+taskTypeArr.map(item=>{
+	type.push(item.name);
+});
+taskContentArr.map(item=>{
+	type.push(item.name);
+});

@@ -1,0 +1,46 @@
+//js读取excel文件
+var dataSource = [];
+var file = XLSX.readFile("数据.xlsx");
+for(var sheet in file.Sheets){
+	if(file.Sheets.hasOwnProperty(sheet)){
+		dataSource = dataSource.concat(XLSX.util.sheet_to_json(file.Sheets[sheet]));
+		break;  //只读取一张表就加break
+	}
+}
+
+//额外给数组中所有对象添加一个key属性，arr是对象数组
+for(var i=0;i<arr.length;i++){
+	var item = arr[i];
+	arr[i] = {key:(i+1),...item};
+}
+
+//替换数组中对象的属性名，arr是对象数组
+for(var item of arr){
+	if(item.hasOwnProperty("姓名")){
+		arr.name = arr["姓名"];
+		delete item["姓名"];
+	}
+}
+
+//将excel表的时间格式转换为YYYY-MM-DD,arr是读取的excel文件的对象数组
+for(var item of arr){
+	if(typeof(item.createTime)==="number"){
+		item.createTime = formatDate(item.createTime,"-");
+	}
+}
+function formatDate(num,format){ //num为整型天数，format为年月日连接符
+  let time = new Date((num - 1) * 24 * 3600000 + 1);
+  time.setYear(time.getFullYear() - 70);
+  let year = time.getFullYear() + '';
+  let month = time.getMonth() + 1 + '';
+  let day = time.getDate() + '';
+  if(month.toString().length == 1){
+    month = "0" + month;
+  }
+  if(day.toString().length == 1){
+    day = "0" + day;
+  }
+  if(format && format.length === 1) {
+      return year + format + month + format + day;
+  }
+}

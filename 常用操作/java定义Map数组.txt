@@ -1,0 +1,8 @@
+//java定义Map对象数组
+Map<String,Object>[] tag = new Map[2];
+tag[0] = new HashMap<String,Object>();
+tag[0].put("key","0");
+tag[0].put("label","很有想法的");
+tag[1] = new HashMap<String,Object>();
+tag[1].put("key","1");
+tag[1].put("label","专注设计");
